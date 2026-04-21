@@ -12,8 +12,6 @@ The network consists of two Cisco routers, two Cisco switches, and a MikroTik ro
 
 Active Directory currently contains two groups: NetWatch (network administrators) and regular users. RADIUS and NPS are used together to authenticate and authorize members of the NetWatch group when accessing Cisco devices. Access is restricted so that NetWatch users can connect via SSH only from designated management network segments (see network topology).
 
-![Network Topology](./Topologija/Diagram%20Cisco%20omprezja%20IPv4.png)
-
 # Authentication and Authorization
 Each Cisco device is registered on the RADIUS server with a pre-shared key. The devices are configured to communicate with the RADIUS server using AAA (authentication, authorization, and accounting), specifically with commands such as "aaa authentication", "aaa authorization", and "aaa group server radius".
 
@@ -27,6 +25,8 @@ Each router has a loopback interface and multiple VLANs configured. OSPF is used
 Switches do not use loopback interfaces. Instead, they use the second IP address from VLAN 100, which is designated as the management VLAN. Trunk ports are configured on switches to allow VLAN traffic between different network segments.
 
 Currently, the network includes three VLANs: VLAN 10, VLAN 20, and VLAN 100.
+
+![Network Topology](./Topologija/Diagram%20Cisco%20omprezja%20IPv4.png)
 
 # Wireless and DHCP
 The main router (R1) has a configured DHCP pool used for the Wi-Fi network. MikroTik access points (one connected to each switch) provide wireless access.
