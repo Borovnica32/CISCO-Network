@@ -1,4 +1,4 @@
-\# Network Infrastructure Project
+# Network Infrastructure Project
 
 This project demonstrates how to design, implement, and maintain a structured network using Windows Server, RADIUS, Active Directory (AD), and Network Policy Server (NPS).
 
@@ -16,7 +16,7 @@ The network topology is located at:
 
 
 
-\# Overview
+# Overview
 
 The network consists of two Cisco routers, two Cisco switches, and a MikroTik router used as a Wi-Fi access point. For administration, a Windows 10 Server is used to run AD, RADIUS, and NPS services.
 
@@ -26,7 +26,7 @@ Active Directory currently contains two groups: NetWatch (network administrators
 
 
 
-\# Authentication and Authorization
+# Authentication and Authorization
 
 Each Cisco device is registered on the RADIUS server with a pre-shared key. The devices are configured to communicate with the RADIUS server using AAA (authentication, authorization, and accounting), specifically with commands such as "aaa authentication", "aaa authorization", and "aaa group server radius".
 
@@ -40,7 +40,7 @@ SSH access is restricted using access control lists. Only users from management 
 
 
 
-\# Network Design
+# Network Design
 
 Each router has a loopback interface and multiple VLANs configured. OSPF is used for routing between networks, and there is a redundant connection between the two routers.
 
@@ -54,11 +54,11 @@ Currently, the network includes three VLANs: VLAN 10, VLAN 20, and VLAN 100.
 
 
 
-!\[Network Topology](./Topologija/Diagram%20Cisco%20omprezja%20IPv4.png)
+[Network Topology](./Topologija/Diagram%20Cisco%20omprezja%20IPv4.png)
 
 
 
-\# Wireless and DHCP
+# Wireless and DHCP
 
 The main router (R1) has a configured DHCP pool used for the Wi-Fi network. MikroTik access points (one connected to each switch) provide wireless access.
 
@@ -68,7 +68,7 @@ Guests can connect using a password and do not have access to internal network s
 
 
 
-\# Additional Services
+# Additional Services
 
 A second server is running TrueNAS and is intended to serve as a shared storage solution. The system is operational but not yet in production use, as no disks have been configured for active storage.
 
