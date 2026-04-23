@@ -1,0 +1,188 @@
+
+!
+! Last configuration change at 13:33:08 UTC Thu Apr 23 2026 by cisco
+! NVRAM config last updated at 13:38:37 UTC Thu Apr 23 2026 by cisco
+! NVRAM config last updated at 13:38:37 UTC Thu Apr 23 2026 by cisco
+version 15.1
+service timestamps debug datetime msec
+service timestamps log datetime msec
+service password-encryption
+!
+hostname ciscoR1
+!
+boot-start-marker
+boot-end-marker
+!
+!
+! card type command needed for slot/vwic-slot 0/1
+no logging console
+enable secret 5 $1$NFM6$4Mpy8t4ictmv43DAey7kv/
+!
+aaa new-model
+!
+!
+aaa group server radius RAD_SERVERS
+ server-private 192.168.101.101 auth-port 1812 acct-port 1813 key 7 030752180500
+!
+aaa authentication login default group RAD_SERVERS local
+aaa authorization exec default group RAD_SERVERS local if-authenticated 
+!
+!
+!
+!
+!
+aaa session-id common
+!
+!
+no ipv6 cef
+no ip source-route
+ip cef
+!
+!
+!
+ip dhcp excluded-address 192.168.3.1 192.168.3.99
+ip dhcp excluded-address 192.168.3.201 192.168.3.254
+!
+ip dhcp pool "WI-FI"
+ network 192.168.3.0 255.255.255.0
+ dns-server 192.168.100.1 
+ default-router 192.168.3.1 
+!
+!
+ip domain name local
+ip host rt1.local 192.168.100.1
+login block-for 60 attempts 3 within 60
+!
+multilink bundle-name authenticated
+!
+!
+crypto pki token default removal timeout 0
+!
+!
+license udi pid CISCO2921/K9 sn FCZ161470JZ
+!
+!
+username cisco privilege 15 secret 5 $1$zHB.$WNgRbmAj6s39hWi552j5U0
+!
+redundancy
+!
+!
+!
+!
+ip ssh version 2
+! 
+!
+!
+!
+!
+!
+!
+interface Loopback0
+ ip address 192.168.100.1 255.255.255.0
+!
+interface Loopback1
+ no ip address
+!
+interface Embedded-Service-Engine0/0
+ no ip address
+ shutdown
+!
+interface GigabitEthernet0/0
+ no ip address
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/0.10
+ encapsulation dot1Q 10
+ ip address 192.168.1.1 255.255.255.0
+!
+interface GigabitEthernet0/0.20
+ encapsulation dot1Q 20
+ ip address 192.168.3.1 255.255.255.0
+!
+interface GigabitEthernet0/0.100
+ encapsulation dot1Q 100
+ ip address 192.168.101.1 255.255.255.0
+!
+interface GigabitEthernet0/1
+ ip address 192.168.200.1 255.255.255.252
+ ip ospf authentication message-digest
+ ip ospf message-digest-key 2 md5 7 0209174B0D0B0E32584B1B
+ ip ospf cost 10
+ duplex full
+ speed 1000
+!
+interface GigabitEthernet0/2
+ ip address 192.168.201.1 255.255.255.252
+ ip ospf authentication message-digest
+ ip ospf message-digest-key 1 md5 7 04541816092A4957
+ ip ospf cost 20
+ duplex full
+ speed 100
+!
+interface GigabitEthernet0/0/0
+ no ip address
+!
+interface GigabitEthernet0/0/1
+ no ip address
+!
+interface GigabitEthernet0/0/2
+ no ip address
+!
+interface GigabitEthernet0/0/3
+ no ip address
+!
+interface Vlan1
+ no ip address
+!
+router ospf 1
+ passive-interface GigabitEthernet0/0.10
+ passive-interface GigabitEthernet0/0.20
+ passive-interface GigabitEthernet0/0.100
+ network 192.168.1.0 0.0.0.255 area 3
+ network 192.168.3.0 0.0.0.255 area 3
+ network 192.168.100.0 0.0.0.255 area 1
+ network 192.168.101.0 0.0.0.255 area 2
+ network 192.168.200.0 0.0.0.3 area 0
+ network 192.168.201.0 0.0.0.3 area 0
+!
+ip forward-protocol nd
+!
+no ip http server
+no ip http secure-server
+!
+ip dns server
+!
+!
+ip radius source-interface Loopback0 
+logging trap debugging
+logging source-interface GigabitEthernet0/0.100
+logging 192.168.101.101
+access-list 100 permit tcp 192.168.101.0 0.0.0.255 host 192.168.100.1 eq 22
+access-list 100 permit tcp 192.168.102.0 0.0.0.255 host 192.168.100.1 eq 22
+!
+!
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+!
+line con 0
+line aux 0
+line 2
+ no activation-character
+ no exec
+ transport preferred none
+ transport input all
+ transport output pad telnet rlogin lapb-ta mop udptn v120 ssh
+ stopbits 1
+line vty 0 4
+ transport input ssh
+!
+scheduler allocate 20000 1000
+end
