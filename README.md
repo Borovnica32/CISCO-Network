@@ -2,20 +2,6 @@
 
 This project demonstrates how to design, implement, and maintain a structured network using Windows Server, RADIUS, Active Directory (AD), and Network Policy Server (NPS).
 
-
-
-The hardware used in this project can be found in:
-
-/CISCO-omrezje-master/Hardware
-
-
-
-The network topology is located at:
-
-/CISCO-omrezje-master/Topologija
-
-
-
 # Overview
 
 The network consists of two Cisco routers, two Cisco switches, and a MikroTik router used as a Wi-Fi access point. For administration, a Windows 10 Server is used to run AD, RADIUS, and NPS services.
