@@ -23,7 +23,7 @@ If the AI begins to abuse it's AD privilegies and starts to destroy critical inf
 Before the actual implementation some aditional resources willhave to be secured:
     - Increese RAM capacity for Windiws Server to maintain higher RAM demand when the AI model is installed and running (MAX RAM: 32 GB of DDR3-1600 SDRAM)
     - Install a new network card on Windows Server (MIN 2x RJ-45 port card)
-    - Secure aditional disks for Windows Server and TrueNAS device to maintain data integrity and to mintain and store log files an relevant data (Not as imortaint ass the     Windows Server upgrade)
+    - Secure aditional disks for Windows Server and TrueNAS device to maintain data integrity and to mintain and store log files an relevant data (Not as imortaint as the Windows Server upgrade)
 
 ### PROBLEM SOLVING ###
 
