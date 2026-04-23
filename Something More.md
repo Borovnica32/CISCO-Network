@@ -28,9 +28,9 @@ Before the actual implementation some aditional resources willhave to be secured
     - Install a new network card on Windows Server (MIN 2x RJ-45 port card)
     - Secure aditional disks for Windows Server and TrueNAS device to maintain data integrity and to mintain and store log files an relevant data (Not as imortaint as the Windows Server upgrade)
 
-### PROBLEM SOLVING ###
+# PROBLEM SOLVING
 
-# OSPF Exposure (IN PROGRESS)
+## OSPF Exposure (IN PROGRESS)
 Implemet `passive-interfaces`
     R1:
         router ospf 1
@@ -53,31 +53,31 @@ OSPF authentication
             ip ospf authentication message-digest
             ip ospf message-digest-key 1 md5 MySecureKey123
 
-# VLAN Filtering
+## VLAN Filtering
 Enable VLAN filtering across all interfaces
 Extra ACL rules for VLANS
 Inter VLAN filtering to be implemented
 
-# TrueNAS
+## TrueNAS
 Move NAS to a dedicated VLAN and isolate it by restricting access to admins and backup groups
 Make vlan 200 192.168.202.0/24
 
-# Redundancy (SOLVED)
+## Redundancy (SOLVED)
 Alredy solved with OSPF routing with cost modifiers (route 1 = cost 10; route 2 = cost 20) if one faile the other one tajes its place
 
-# Out-of-Bound management networks
+## Out-of-Bound management networks
 Implement a way to seperate importaint segments like `management` segments and `TrueNAS` server (OOB networks)
 
-# Disable `ip source-route` (DONE)
+## Disable `ip source-route` (DONE)
 disable by using `no ip source-route`
 
-# Fix DHCP pool (DONE)
+## Fix DHCP pool (DONE)
 default-router `192.168.100.1` -> default-router `192.168.3.1`
 
-# Implement password encryption (DONE)
+## Implement password encryption (DONE)
 use `service password-encryption`
 
-# ACL exists but not used (REDY)
+## ACL exists but not used (REDY)
 ```
 access-list 100 permit tcp 192.168.101.0 0.0.0.255 host 192.168.100.1 eq 22
 access-list 100 permit tcp 192.168.102.0 0.0.0.255 host 192.168.100.1 eq 22
@@ -91,7 +91,7 @@ line vty 0 4
  transport input ssh
 ```
 
-# Toughter SSH rules (REDY)
+## Toughter SSH rules (REDY)
 
 ```
 ip ssh authentication-retries 3
@@ -102,7 +102,7 @@ exec-timeout 10 0  ! Sets timeout to 10 minutes
 ```
 
 
-# Logging of events (REDY)
+## Logging of events (REDY)
 Send logs to your server:
 
 ```
