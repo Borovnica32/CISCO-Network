@@ -18,6 +18,9 @@ In addition to backups monitoring tools like WIreshark wil have to be installed 
 In case of critical faliour the system is to be shutdown imedietly, inspected and restored from a valid backup
 If the AI begins to abuse it's AD privilegies and starts to destroy critical infrastructure the system is to be shit down imedietly, inspected and later restored from a valid backup
 
+## Backup policy
+Valid backups have to be safly stored on a offsite system (GutHub) to secure their integrity and prevent degredation of the backups, they also have to be made each time a important change is made in the configuration of the device
+
 # Due to safty conserns phisical access will have to be limited to secure critical infrastructure and to maintain the isolated environment, only authorized personel may interact with the environment
 
 Before the actual implementation some aditional resources willhave to be secured:
