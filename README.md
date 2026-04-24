@@ -57,4 +57,3 @@ Guests can connect using a password and do not have access to internal network s
 # Additional Services
 
 A second server is running TrueNAS and is intended to serve as a shared storage solution. The system is operational but not yet in production use, as no disks have been configured for active storage.
-
