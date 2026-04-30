@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body{
+                background-color: #0d1117;
+                color: white;
+                font-family: 'Trebuchet MS', sans-serif;
+            }
+
+            h1{
+                margin-top: 2.5%;
+                border-bottom: 1px solid #2f353d; 
+                padding-bottom: 10px;
+            }
+        </style>
+        <title>Network Infrastructure Project</title>
+    </head>
+    <body>
+
+        <h1>Network Infrastructure Project</h1> 
+        <p>This project demonstrates how to design, implement, and maintain a structured network using Windows Server, RADIUS, Active Directory (AD), and Network Policy Server (NPS).</p>
+        
+        <h1>Overview</h1>
+        <p>The network consists of two Cisco routers, two Cisco switches, and a MikroTik router used as a Wi-Fi access point. For administration, a Windows 10 Server is used to run AD, RADIUS, and NPS services.</p>
+
+        <p>Active Directory currently contains two groups: NetWatch (network administrators) and regular users. RADIUS and NPS are used together to authenticate and authorize members of the NetWatch group when accessing Cisco devices. Access is restricted so that NetWatch users can connect via SSH only from designated management network segments (see network topology).</p>
+
+        <h1>Authentication and Authorization</h1>
+        <p>Each Cisco device is registered on the RADIUS server with a pre-shared key. The devices are configured to communicate with the RADIUS server using AAA (authentication, authorization, and accounting), specifically with commands such as "aaa authentication", "aaa authorization", and "aaa group server radius".</p>
+
+        <p>Each device also has a fallback local account in case the RADIUS server becomes unavailable.</p>
+
+        <p>SSH access is restricted using access control lists. Only users from management network segments can connect, and only to specific IP addresses on each device (loopback interfaces for routers or management IPs for switches).</p>
+
+        <h1>Network Design</h1>
+        <p>Each router has a loopback interface and multiple VLANs configured. OSPF is used for routing between networks, and there is a redundant connection between the two routers.</p>
+
+        <p>Switches do not use loopback interfaces. Instead, they use the second IP address from VLAN 100, which is designated as the management VLAN. Trunk ports are configured on switches to allow VLAN traffic between different network segments.</p>
+
+        <p>Currently, the network includes three VLANs: VLAN 10, VLAN 20 (R1 Only), and VLAN 100.</p>
+        <div style="display: flex; justify-content: center;">
+            <img src="https://raw.githubusercontent.com/Borovnica32/CISCO-Network/29e5bcd4fd5467787ea74f0ef08f6927a76496c1/Topologija/Diagram%20Cisco%20omprezja%20IPv4%20Public.png" alt="Topology" >
+        </div>
+
+        <h1>Wireless and DHCP</h1>
+        <p>The main router (R1) has a configured DHCP pool used for the Wi-Fi network. MikroTik access points (one connected to S1 Switch) provide wireless access.</p>
+
+        <p>Guests can connect using a password and do not have access to internal network services. User authentication via Active Directory for Wi-Fi access is planned but not yet fully implemented.</p>
+
+        <h1>Additional Services</h1>
+        <p>A second server is running TrueNAS and is intended to serve as a backup system for system configs. Currently it runs the following services: SSH, TFTP and SMB. SSH is primarely used for maintenance, TFTP is used o save network device configs and SMB is ment for sharing files (currently the config files for authorized users)</p>
+
+    </body>
+</html>
