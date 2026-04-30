@@ -36,7 +36,7 @@ Switches do not use loopback interfaces. Instead, they use the second IP address
 
 
 
-Currently, the network includes three VLANs: VLAN 10, VLAN 20, and VLAN 100.
+Currently, the network includes three VLANs: VLAN 10, VLAN 20 (R1 Only), and VLAN 100.
 
 
 
