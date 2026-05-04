@@ -50,7 +50,7 @@ The main router (R1) has a configured DHCP pool used for the Wi-Fi network. Mikr
 
 
 
-Guests can connect using a password and do not have access to internal network services. User authentication via Active Directory for Wi-Fi access is planned but not yet fully implemented.
+Guests can connect using a password and do not have access to internal network services. User authentication via Active Directory for Wi-Fi access and have access to the internal network and services.
 
 
 
