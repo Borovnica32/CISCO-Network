@@ -46,7 +46,7 @@ Currently, the network includes three VLANs: VLAN 10, VLAN 20 (R1 Only), and VLA
 
 # Wireless and DHCP
 
-The main router (R1) has a configured DHCP pool used for the Wi-Fi network. MikroTik access points (one connected to each switch) provide wireless access.
+The main router (R1) has a configured DHCP pool used for the Wi-Fi network. MikroTik access points (one connected to S1) provide wireless access.
 
 
 
